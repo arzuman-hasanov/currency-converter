@@ -237,4 +237,8 @@ main .wrapper .buttons li:nth-child(4) {
     flex-direction: column;
     row-gap: 30px;
   }
+  
+  .alert {
+    width: 60%;
+  }
 }
