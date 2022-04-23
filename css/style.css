@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-around;
+  height: 50px;
+  background: #f5f5f6;
+}
+
+header .container .logo img {
+  width: 89px;
+  height: 23px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+header .container .menu {
+  width: 45%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 17px;
+}
+
+header .container .menu li {
+  list-style: none;
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: 0.06em;
+  color: #959ba4;
+  cursor: pointer;
+}
+
+header .active {
+  color: #000000 !important;
+}
+
+header .container .profil button {
+  background-color: #fff;
+  border: none;
+  width: 58px;
+  height: 33px;
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: 0.06em;
+  margin-top: 9px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+main .wrapper {
+  width: 590px;
+  margin: 56px auto 0;
+}
+
+main .wrapper h1 {
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 42px;
+  margin-bottom: 33px;
+}
+
+main .wrapper .blocks {
+  display: flex;
+  justify-content: space-between;
+}
+
+main .wrapper .blocks .text {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 11px;
+  color: #9f9f9f;
+}
+
+main .wrapper .buttons {
+  display: flex;
+}
+
+main .wrapper .buttons li {
+  width: 65px;
+  height: 33px;
+  background-color: #fff;
+  color: #c6c6c6;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #c6c6c6;
+  border-left: none;
+  cursor: pointer;
+}
+
+main .wrapper .buttons li:nth-child(1) {
+  border-radius: 3px 0px 0px 3px;
+  border-left: 1px solid #c6c6c6;
+}
+
+main .wrapper .buttons li:nth-child(4) {
+  border-radius: 0px 3px 3px 0px;
+}
+
+.selected {
+  background: #833ae0 !important;
+  color: #ffffff !important;
+  border: 1px solid #833ae0 !important;
+}
+
+.inputSection,
+.outputSection {
+  width: 259px;
+  height: 102px;
+  margin-top: 20px;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding: 14px;
+  position: relative;
+}
+
+.inputSection input,
+.outputSection input {
+  height: 40px;
+  width: 160px;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 42px;
+  border: 1px solid #c6c6c6;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  padding-left: 7px;
+}
+
+.inputSection span,
+.outputSection span {
+  display: block;
+  position: absolute;
+  bottom: 5px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #c6c6c6;
+}
+
+.alert {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  background-color: #f7a7a3;
+  border-left: 5px solid #b20600;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 5px #ccc;
+}
+
+.alert h3 {
+  font-family: Quicksand;
+}
+
+.alert .close {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  opacity: 0.5;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+  right: 15px;
+  top: 25px;
+  text-align: center;
+  font-size: 1.6em;
+  cursor: pointer;
+}
+
+.alert .close:hover {
+  color: #fff;
+}
+
+@media (max-width: 1200px) {
+  header .container {
+    justify-content: space-between;
+    padding: 0 90px;
+  }
+
+  header .container .menu {
+    display: none;
+  }
+}
+
+@media (max-width: 830px) {
+  main .wrapper {
+    width: 70%;
+  }
+
+  main .wrapper h1 {
+    font-size: 26px;
+  }
+
+  main .wrapper .blocks {
+    flex-direction: column;
+    row-gap: 30px;
+  }
+}
