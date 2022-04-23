@@ -39,6 +39,10 @@ header .container .menu li {
   cursor: pointer;
 }
 
+header .container .menu li:hover {
+  color: #b0b7c0;
+}
+
 header .active {
   color: #000000 !important;
 }
