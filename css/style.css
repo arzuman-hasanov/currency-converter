@@ -7,7 +7,6 @@
   box-sizing: border-box;
 }
 
-
 header .container {
   display: flex;
   justify-content: space-around;
@@ -15,7 +14,6 @@ header .container {
   background: #f5f5f6;
   position: relative;
 }
-
 
 /* - Drop Down Menu Section Start - */
 
@@ -25,11 +23,10 @@ header .container .hamburger-menu {
   top: 17px;
   display: none;
   align-items: center;
-
 }
 
 header .container .hamburger-menu i {
-  transition: .2s linear;
+  transition: 0.2s linear;
   cursor: pointer;
 }
 
@@ -45,7 +42,7 @@ header .container .hamburger-menu .sidebar {
   height: 100%;
   width: 250px;
   background: rgba(101, 24, 189, 0.8);
-  transition: .7s ease-in-out;
+  transition: 0.7s ease-in-out;
   z-index: 10;
 }
 
@@ -54,7 +51,7 @@ header .container .hamburger-menu .sidebar .close {
   right: 20px;
   top: 20px;
   color: #fff;
-  transition: .3s ease;
+  transition: 0.3s ease;
   font-size: 20px;
 }
 
@@ -70,15 +67,15 @@ header .container .hamburger-menu .sidebar ul {
 }
 
 header .container .hamburger-menu .sidebar ul li {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   background-color: #9f57fd;
   color: #fff;
   display: flex;
   padding: 20px;
-  transition: .4s ease;
+  transition: 0.4s ease;
   font-size: 14px;
   font-weight: 400;
-  margin: .5px 3px;
+  margin: 0.5px 3px;
   cursor: pointer;
 }
 
@@ -94,7 +91,6 @@ header .sidebar .active {
 }
 
 /* - x - Drop Down Menu Section End - x - */
-
 
 header .container .logo img {
   width: 89px;
@@ -124,8 +120,6 @@ header .container .menu li {
 header .container .menu li:hover {
   color: #b0b7c0;
 }
-
-
 
 header .menu .active {
   color: #000000 !important;
