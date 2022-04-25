@@ -25,12 +25,12 @@ let dropDownMenu = document.querySelector(".sidebar");
 // dropdown menu close btn selection
 let closeDropDown = document.querySelector(".close");
 
-menuBtn.addEventListener("click",(e)=>{
+menuBtn.addEventListener("click", (e) => {
   e.target.style.display = "none";
   dropDownMenu.style.left = 0;
 })
 
-closeDropDown.addEventListener("click",()=>{
+closeDropDown.addEventListener("click", () => {
   menuBtn.style.display = "block";
   dropDownMenu.style.left = -100 + "%";
 })
@@ -39,8 +39,8 @@ let currencyFROM = "RUB";
 let currencyTO = "USD";
 
 fetch(
-  `https://api.exchangerate.host/latest?base=${currencyFROM}&symbols=${currencyTO}`
-)
+    `https://api.exchangerate.host/latest?base=${currencyFROM}&symbols=${currencyTO}`
+  )
   .then((res) => res.json())
   .then((data) => {
     input.addEventListener("keyup", (e) => {
@@ -65,8 +65,8 @@ fromButtons.forEach((item) => {
     });
     currencyFROM = e.target.innerHTML;
     fetch(
-      `https://api.exchangerate.host/latest?base=${currencyFROM}&symbols=${currencyTO}`
-    )
+        `https://api.exchangerate.host/latest?base=${currencyFROM}&symbols=${currencyTO}`
+      )
       .then((res) => res.json())
       .then((data) => {
         fromInfo.innerHTML = `1 ${currencyFROM} = ${data.rates[currencyTO]} ${currencyTO}`;
@@ -85,8 +85,8 @@ fromButtons.forEach((item) => {
       });
 
     fetch(
-      `https://api.exchangerate.host/latest?base=${currencyTO}&symbols=${currencyFROM}`
-    )
+        `https://api.exchangerate.host/latest?base=${currencyTO}&symbols=${currencyFROM}`
+      )
       .then((res) => res.json())
       .then((data) => {
         toInfo.innerHTML = `1 ${currencyTO} = ${data.rates[currencyFROM]} ${currencyFROM}`;
@@ -104,8 +104,8 @@ toButtons.forEach((item) => {
 
     currencyTO = e.target.innerHTML;
     fetch(
-      `https://api.exchangerate.host/latest?base=${currencyFROM}&symbols=${currencyTO}`
-    )
+        `https://api.exchangerate.host/latest?base=${currencyFROM}&symbols=${currencyTO}`
+      )
       .then((res) => res.json())
       .then((data) => {
         fromInfo.innerHTML = `1 ${currencyFROM} = ${data.rates[currencyTO]} ${currencyTO}`;
@@ -124,8 +124,8 @@ toButtons.forEach((item) => {
       });
 
     fetch(
-      `https://api.exchangerate.host/latest?base=${currencyTO}&symbols=${currencyFROM}`
-    )
+        `https://api.exchangerate.host/latest?base=${currencyTO}&symbols=${currencyFROM}`
+      )
       .then((res) => res.json())
       .then((data) => {
         toInfo.innerHTML = `1 ${currencyTO} = ${data.rates[currencyFROM]} ${currencyFROM}`;
@@ -134,5 +134,3 @@ toButtons.forEach((item) => {
     e.target.classList.add("selected");
   });
 });
-
-
