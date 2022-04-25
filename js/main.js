@@ -16,6 +16,25 @@ let toInfo = document.querySelector(".outputSection span");
 // alert message selection
 let alert = document.querySelector(".alert");
 
+// dropdown menu activate btn selection
+let menuBtn = document.querySelector(".menuBtn");
+
+// dropdown menu area selection
+let dropDownMenu = document.querySelector(".sidebar");
+
+// dropdown menu close btn selection
+let closeDropDown = document.querySelector(".close");
+
+menuBtn.addEventListener("click",(e)=>{
+  e.target.style.display = "none";
+  dropDownMenu.style.left = 0;
+})
+
+closeDropDown.addEventListener("click",()=>{
+  menuBtn.style.display = "block";
+  dropDownMenu.style.left = -100 + "%";
+})
+
 let currencyFROM = "RUB";
 let currencyTO = "USD";
 
@@ -115,3 +134,5 @@ toButtons.forEach((item) => {
     e.target.classList.add("selected");
   });
 });
+
+
