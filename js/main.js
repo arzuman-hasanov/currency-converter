@@ -1,5 +1,5 @@
-let input = document.querySelector(".inputSection input");
-let output = document.querySelector(".outputSection input");
+let input1 = document.querySelector(".inputSection1 input");
+let input2 = document.querySelector(".inputSection2 input");
 
 // buttons from currency
 let fromButtons = document.querySelectorAll(".fromButtons li");
@@ -8,10 +8,10 @@ let fromButtons = document.querySelectorAll(".fromButtons li");
 let toButtons = document.querySelectorAll(".toButtons li");
 
 // first info
-let fromInfo = document.querySelector(".inputSection span");
+let fromInfo = document.querySelector(".inputSection1 span");
 
 // second info
-let toInfo = document.querySelector(".outputSection span");
+let toInfo = document.querySelector(".inputSection2 span");
 
 // alert message selection
 let alert = document.querySelector(".alert");
@@ -25,112 +25,86 @@ let dropDownMenu = document.querySelector(".sidebar");
 // dropdown menu close btn selection
 let closeDropDown = document.querySelector(".close");
 
+// dropdown menu activation event
 menuBtn.addEventListener("click", (e) => {
   e.target.style.display = "none";
   dropDownMenu.style.left = 0;
-})
+});
 
+// dropdown menu deactivation event
 closeDropDown.addEventListener("click", () => {
   menuBtn.style.display = "block";
   dropDownMenu.style.left = -100 + "%";
-})
+});
 
+// values for default convertion
 let currencyFROM = "RUB";
 let currencyTO = "USD";
 
-fetch(
-    `https://api.exchangerate.host/latest?base=${currencyFROM}&symbols=${currencyTO}`
-  )
-  .then((res) => res.json())
-  .then((data) => {
-    input.addEventListener("keyup", (e) => {
-      input.value = e.target.value;
-      input.value = input.value.split(",").join(".");
+// api fetch for default convertion
+currencyFrom();
 
-      if (isNaN(input.value)) {
-        output.value = "";
-        alert.style.display = "block";
-      } else {
-        output.value = input.value * data.rates[currencyTO];
-        alert.style.display = "none";
-      }
-    });
-    output.value = input.value * data.rates[currencyTO];
-  });
-
+// event for left buttons
 fromButtons.forEach((item) => {
   item.addEventListener("click", (e) => {
     fromButtons.forEach((item) => {
       item.classList.remove("selected");
     });
     currencyFROM = e.target.innerHTML;
-    fetch(
-        `https://api.exchangerate.host/latest?base=${currencyFROM}&symbols=${currencyTO}`
-      )
-      .then((res) => res.json())
-      .then((data) => {
-        fromInfo.innerHTML = `1 ${currencyFROM} = ${data.rates[currencyTO]} ${currencyTO}`;
-        if (isNaN(input.value)) {
-          output.value = "";
-          alert.style.display = "block";
-        } else {
-          output.value = input.value * data.rates[currencyTO];
-          alert.style.display = "none";
-        }
-        input.addEventListener("keyup", (e) => {
-          input.value = e.target.value;
-          input.value = input.value.split(",").join(".");
-          output.value = input.value * data.rates[currencyTO];
-        });
-      });
 
-    fetch(
-        `https://api.exchangerate.host/latest?base=${currencyTO}&symbols=${currencyFROM}`
-      )
-      .then((res) => res.json())
-      .then((data) => {
-        toInfo.innerHTML = `1 ${currencyTO} = ${data.rates[currencyFROM]} ${currencyFROM}`;
-      });
+    currencyFrom();
+    currencyTo();
 
     e.target.classList.add("selected");
   });
 });
 
+// event for right buttons
 toButtons.forEach((item) => {
   item.addEventListener("click", (e) => {
     toButtons.forEach((item) => {
       item.classList.remove("selected");
     });
-
     currencyTO = e.target.innerHTML;
-    fetch(
-        `https://api.exchangerate.host/latest?base=${currencyFROM}&symbols=${currencyTO}`
-      )
-      .then((res) => res.json())
-      .then((data) => {
-        fromInfo.innerHTML = `1 ${currencyFROM} = ${data.rates[currencyTO]} ${currencyTO}`;
-        if (isNaN(input.value)) {
-          output.value = "";
-          alert.style.display = "block";
-        } else {
-          output.value = input.value * data.rates[currencyTO];
-          alert.style.display = "none";
-        }
-        input.addEventListener("keyup", (e) => {
-          input.value = e.target.value;
-          input.value = input.value.split(",").join(".");
-          output.value = input.value * data.rates[currencyTO];
-        });
-      });
 
-    fetch(
-        `https://api.exchangerate.host/latest?base=${currencyTO}&symbols=${currencyFROM}`
-      )
-      .then((res) => res.json())
-      .then((data) => {
-        toInfo.innerHTML = `1 ${currencyTO} = ${data.rates[currencyFROM]} ${currencyFROM}`;
-      });
+    currencyFrom();
+    currencyTo();
 
     e.target.classList.add("selected");
   });
 });
+
+// api fetch for currency from-to
+function currencyFrom() {
+  fetch(
+    `https://api.exchangerate.host/latest?base=${currencyFROM}&symbols=${currencyTO}`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      fromInfo.innerHTML = `1 ${currencyFROM} = ${data.rates[currencyTO]} ${currencyTO}`;
+      if (isNaN(input1.value)) {
+        input2.value = "";
+        alert.style.display = "block";
+      } else {
+        input2.value =
+          input1.value * data.rates[currencyTO].toFixed(4) + " " + currencyTO;
+        alert.style.display = "none";
+      }
+      input1.addEventListener("keyup", (e) => {
+        input1.value = e.target.value;
+        input1.value = input1.value.split(",").join(".");
+        input2.value = input1.value * data.rates[currencyTO];
+      });
+    });
+}
+
+// api fetch for currency to-from
+function currencyTo() {
+  fetch(
+    `https://api.exchangerate.host/latest?base=${currencyTO}&symbols=${currencyFROM}`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      toInfo.innerHTML = `1 ${currencyTO} = ${data.rates[currencyFROM]} ${currencyFROM}`;
+    });
+}
