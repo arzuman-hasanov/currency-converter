@@ -87,13 +87,14 @@ function currencyFrom() {
         alert.style.display = "block";
       } else {
         input2.value =
-          input1.value * data.rates[currencyTO].toFixed(4) + " " + currencyTO;
+          (input1.value * data.rates[currencyTO]).toFixed(4) + " " + currencyTO;
         alert.style.display = "none";
       }
       input1.addEventListener("keyup", (e) => {
         input1.value = e.target.value;
         input1.value = input1.value.split(",").join(".");
-        input2.value = input1.value * data.rates[currencyTO];
+        input2.value =
+          (input1.value * data.rates[currencyTO]).toFixed(4) + " " + currencyTO;
       });
     });
 }
