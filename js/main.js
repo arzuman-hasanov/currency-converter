@@ -43,7 +43,6 @@ let currencyTO = "USD";
 
 // api fetch for default convertion
 currencyFrom();
-
 // event for left buttons
 fromButtons.forEach((item) => {
   item.addEventListener("click", (e) => {
@@ -89,6 +88,7 @@ function currencyFrom() {
         input2.value = (input1.value * data.rates[currencyTO]).toFixed(2);
         alert.style.display = "none";
       }
+
       input1.addEventListener("keyup", (e) => {
         input1.value = e.target.value;
         input1.value = input1.value.split(",").join(".");
@@ -127,3 +127,32 @@ function currencyTo() {
       });
     });
 }
+
+
+fetch(
+  `https://api.exchangerate.host/latest?base=${currencyTO}&symbols=${currencyFROM}`
+)
+  .then((res) => res.json())
+  .then((data) => {
+    fromInfo.innerHTML = `1 ${currencyTO} = ${data.rates[currencyFROM]} ${currencyFROM}`;
+    if (isNaN(input2.value)) {
+      input1.value = "";
+      alert.style.display = "block";
+    } else {
+      input1.value = (input2.value * data.rates[currencyFROM]).toFixed(2);
+      alert.style.display = "none";
+    }
+    
+    input2.addEventListener("keyup", (e) => {
+      input2.value = e.target.value;
+      input2.value = input2.value.split(",").join(".");
+
+      if (isNaN(input2.value)) {
+        input1.value = "";
+        alert.style.display = "block";
+      } else {
+        input1.value = (input2.value * data.rates[currencyFROM]).toFixed(2);
+        alert.style.display = "none";
+      }
+    });
+  });
