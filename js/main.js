@@ -86,23 +86,20 @@ function currencyFrom() {
         input2.value = "";
         alert.style.display = "block";
       } else {
-        input2.value =
-          (input1.value * data.rates[currencyTO]).toFixed(4) + " " + currencyTO;
+        input2.value = (input1.value * data.rates[currencyTO]).toFixed(2);
         alert.style.display = "none";
       }
       input1.addEventListener("keyup", (e) => {
-        
         input1.value = e.target.value;
         input1.value = input1.value.split(",").join(".");
 
-        if(isNaN(input1.value)) {
+        if (isNaN(input1.value)) {
           input2.value = "";
           alert.style.display = "block";
         } else {
-          input2.value = (input1.value * data.rates[currencyTO]).toFixed(4) + " " + currencyTO;
+          input2.value = (input1.value * data.rates[currencyTO]).toFixed(2);
           alert.style.display = "none";
         }
-        
       });
     });
 }
@@ -115,5 +112,18 @@ function currencyTo() {
     .then((res) => res.json())
     .then((data) => {
       toInfo.innerHTML = `1 ${currencyTO} = ${data.rates[currencyFROM]} ${currencyFROM}`;
+
+      input2.addEventListener("keyup", (e) => {
+        input2.value = e.target.value;
+        input2.value = input2.value.split(",").join(".");
+
+        if (isNaN(input2.value)) {
+          input1.value = "";
+          alert.style.display = "block";
+        } else {
+          input1.value = (input2.value * data.rates[currencyFROM]).toFixed(2);
+          alert.style.display = "none";
+        }
+      });
     });
 }
