@@ -1,42 +1,27 @@
 let input1 = document.querySelector(".inputSection1 input");
 let input2 = document.querySelector(".inputSection2 input");
 
-// buttons from currency
 let fromButtons = document.querySelectorAll(".fromButtons li");
-
-// buttons to currency
 let toButtons = document.querySelectorAll(".toButtons li");
 
-// first info
 let fromInfo = document.querySelector(".inputSection1 span");
-
-// second info
 let toInfo = document.querySelector(".inputSection2 span");
 
-// alert message selection
 let alert = document.querySelector(".alert");
 
-// dropdown menu activate btn selection
 let menuBtn = document.querySelector(".menuBtn");
-
-// dropdown menu area selection
 let dropDownMenu = document.querySelector(".sidebar");
-
-// dropdown menu close btn selection
 let closeDropDown = document.querySelector(".close");
-
 
 menuBtn.addEventListener("click", (e) => {
   e.target.style.display = "none";
   dropDownMenu.style.left = 0;
 });
 
-
 closeDropDown.addEventListener("click", () => {
   menuBtn.style.display = "block";
   dropDownMenu.style.left = -100 + "%";
 });
-
 
 let currencyFROM = "RUB";
 let currencyTO = "USD";
@@ -69,7 +54,6 @@ toButtons.forEach((item) => {
     });
 });
 
-
 function currencyFrom() {
   fetch(
     `https://api.exchangerate.host/latest?base=${currencyFROM}&symbols=${currencyTO}`
@@ -99,7 +83,6 @@ function currencyFrom() {
         });
     });
 }
-
 
 function currencyTo() {
   fetch(
