@@ -25,13 +25,13 @@ let dropDownMenu = document.querySelector(".sidebar");
 // dropdown menu close btn selection
 let closeDropDown = document.querySelector(".close");
 
-// dropdown menu activation event
+
 menuBtn.addEventListener("click", (e) => {
   e.target.style.display = "none";
   dropDownMenu.style.left = 0;
 });
 
-// dropdown menu deactivation event
+
 closeDropDown.addEventListener("click", () => {
   menuBtn.style.display = "block";
   dropDownMenu.style.left = -100 + "%";
