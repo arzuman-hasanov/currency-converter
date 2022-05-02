@@ -81,7 +81,10 @@ function currencyFrom() {
             alert.style.display = "none";
           }
         });
-    });
+    })
+    .catch(error =>{
+      console.log(`An error has occurred: ${error.message}`);
+    })
 }
 
 function currencyTo() {
@@ -104,7 +107,10 @@ function currencyTo() {
           alert.style.display = "none";
         }
       });
-    });
+    })
+    .catch(error =>{
+      console.log(`An error has occurred: ${error.message}`);
+    })
 }
 
 fetch(
@@ -133,4 +139,7 @@ fetch(
           alert.style.display = "none";
         }
     });
-  });
+  })
+  .catch(error =>{
+      console.log(`An error has occurred: ${error.message}`);
+   })
