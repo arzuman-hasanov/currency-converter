@@ -1,27 +1,42 @@
 let input1 = document.querySelector(".inputSection1 input");
 let input2 = document.querySelector(".inputSection2 input");
 
+// buttons from currency
 let fromButtons = document.querySelectorAll(".fromButtons li");
+
+// buttons to currency
 let toButtons = document.querySelectorAll(".toButtons li");
 
+// first info
 let fromInfo = document.querySelector(".inputSection1 span");
+
+// second info
 let toInfo = document.querySelector(".inputSection2 span");
 
+// alert message selection
 let alert = document.querySelector(".alert");
 
+// dropdown menu activate btn selection
 let menuBtn = document.querySelector(".menuBtn");
+
+// dropdown menu area selection
 let dropDownMenu = document.querySelector(".sidebar");
+
+// dropdown menu close btn selection
 let closeDropDown = document.querySelector(".close");
 
+// dropdown menu activation event
 menuBtn.addEventListener("click", (e) => {
   e.target.style.display = "none";
   dropDownMenu.style.left = 0;
 });
 
+// dropdown menu deactivation event
 closeDropDown.addEventListener("click", () => {
   menuBtn.style.display = "block";
   dropDownMenu.style.left = -100 + "%";
 });
+
 
 let currencyFROM = "RUB";
 let currencyTO = "USD";
@@ -34,10 +49,17 @@ fromButtons.forEach((item) => {
         item.classList.remove("selected");
       });
       currencyFROM = e.target.innerHTML;
-      currencyFrom();
-      currencyTo();
-
       e.target.classList.add("selected");
+
+      if(currencyFROM === currencyTO){
+        input2.value = input1.value;
+        fromInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
+        toInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
+      }else {
+        currencyFrom();
+        currencyTo();
+      }
+
     });
 });
 
@@ -47,12 +69,19 @@ toButtons.forEach((item) => {
         item.classList.remove("selected");
       });
       currencyTO = e.target.innerHTML;
-      currencyFrom();
-      currencyTo();
+      if(currencyFROM === currencyTO){
+        input2.value = input1.value;
+        fromInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
+        toInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
+      }else {
+        currencyFrom();
+        currencyTo();
+      }
 
       e.target.classList.add("selected");
     });
 });
+
 
 function currencyFrom() {
   fetch(
@@ -67,6 +96,7 @@ function currencyFrom() {
         } else {
           input2.value = (input1.value * data.rates[currencyTO]).toFixed(2);
           alert.style.display = "none";
+
         }
 
         input1.addEventListener("keyup", (e) => {
@@ -77,8 +107,16 @@ function currencyFrom() {
             input2.value = "";
             alert.style.display = "block";
           } else {
-            input2.value = (input1.value * data.rates[currencyTO]).toFixed(2);
-            alert.style.display = "none";
+            if(currencyFROM === currencyTO){
+              input2.value = input1.value;
+              fromInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
+              toInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
+            }else {
+              
+              input2.value = (input1.value * data.rates[currencyTO]).toFixed(2);
+              alert.style.display = "none";
+            }
+
           }
         });
     })
@@ -86,6 +124,7 @@ function currencyFrom() {
       console.log(`An error has occurred: ${error.message}`);
     })
 }
+
 
 function currencyTo() {
   fetch(
@@ -103,8 +142,14 @@ function currencyTo() {
           input1.value = "";
           alert.style.display = "block";
         } else {
-          input1.value = (input2.value * data.rates[currencyFROM]).toFixed(2);
-          alert.style.display = "none";
+          if(currencyFROM === currencyTO) {
+            input1.value = input2.value;
+            fromInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
+            toInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
+          }else {
+            input1.value = (input2.value * data.rates[currencyFROM]).toFixed(2);
+            alert.style.display = "none";
+          }
         }
       });
     })
@@ -135,11 +180,17 @@ fetch(
           input1.value = "";
           alert.style.display = "block";
         } else {
-          input1.value = (input2.value * data.rates[currencyFROM]).toFixed(2);
-          alert.style.display = "none";
+          if(currencyFROM === currencyTO) {
+            input1.value = input2.value;
+            fromInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
+            toInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
+          }else {
+            input1.value = (input2.value * data.rates[currencyFROM]).toFixed(2);
+            alert.style.display = "none";
+          }
         }
     });
   })
   .catch(error =>{
-      console.log(`An error has occurred: ${error.message}`);
-   })
+    console.log(`An error has occurred: ${error.message}`);
+  })
