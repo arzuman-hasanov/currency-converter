@@ -94,7 +94,7 @@ function currencyFrom() {
           input2.value = "";
           alert.style.display = "block";
         } else {
-          input2.value = (input1.value * data.rates[currencyTO]).toFixed(2);
+          input2.value = (input1.value * data.rates[currencyTO]).toFixed(4);
           alert.style.display = "none";
 
         }
@@ -113,7 +113,7 @@ function currencyFrom() {
               toInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
             }else {
               
-              input2.value = (input1.value * data.rates[currencyTO]).toFixed(2);
+              input2.value = (input1.value * data.rates[currencyTO]).toFixed(4);
               alert.style.display = "none";
             }
 
@@ -147,7 +147,7 @@ function currencyTo() {
             fromInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
             toInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
           }else {
-            input1.value = (input2.value * data.rates[currencyFROM]).toFixed(2);
+            input1.value = (input2.value * data.rates[currencyFROM]).toFixed(4);
             alert.style.display = "none";
           }
         }
@@ -168,7 +168,7 @@ fetch(
         input1.value = "";
         alert.style.display = "block";
       } else {
-        input1.value = (input2.value * data.rates[currencyFROM]).toFixed(2);
+        input1.value = (input2.value * data.rates[currencyFROM]).toFixed(4);
         alert.style.display = "none";
       }
 
@@ -185,7 +185,7 @@ fetch(
             fromInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
             toInfo.innerHTML = `1 ${currencyFROM} = 1 ${currencyTO}`;
           }else {
-            input1.value = (input2.value * data.rates[currencyFROM]).toFixed(2);
+            input1.value = (input2.value * data.rates[currencyFROM]).toFixed(4);
             alert.style.display = "none";
           }
         }
